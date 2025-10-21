@@ -5,6 +5,7 @@ using InvestmentPortfolioTracker.Repositories;
 using InvestmentPortfolioTracker.Services;
 using InvestmentPortfolioTracker.UI;
 using Spectre.Console;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace InvestmentPortfolioTracker;
 
@@ -30,7 +31,7 @@ class Program
 
             // Set up DbContext options
             var optionsBuilder = new DbContextOptionsBuilder<PortfolioDbContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseNpgsql(connectionString);
 
             // Initialize database context
             await using var context = new PortfolioDbContext(optionsBuilder.Options);
